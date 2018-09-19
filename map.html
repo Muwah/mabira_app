@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <title>Layer Groups</title>
+	<script src="ext-3.4.1/adapter/ext/ext-base.js" type="text/javascript"></script>
+	<script src="ext-3.4.1/ext-all.js"  type="text/javascript"></script>	
+	<link rel="stylesheet" type="text/css" href="ext-3.4.1/resources/css/ext-all.css"></link>
+	<script src="OpenLayers-2.13.1/OpenLayers.js" type="text/javascript"></script>
+	<script src="GeoExt/lib/GeoExt.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="GeoExt/resources/css/geoext-all-debug.css"></link>
+	<link rel="stylesheet" href="style.css">
+	
+		<script type="text/javascript">
+	
+	
+	var mapPanel;
+    Ext.onReady(function() {
+        var map = new OpenLayers.Map({allOverlays: true});
+        var layer = new OpenLayers.Layer.WMS(
+            "Rivers",
+            "http://localhost:9999/geoserver/william/wms",
+            {layers: "william:rivers", transparent: true},
+        {singleTile: true});
+		var layer1 = new OpenLayers.Layer.WMS(
+            "Counties",
+            "http://localhost:9999/geoserver/william/wms",
+            {layers: "william:counties", transparent: true},
+        {singleTile: true});
+		var layer2 = new OpenLayers.Layer.WMS(
+            "National Parks",
+            "http://localhost:9999/geoserver/william/wms",
+            {layers: "william:nationalparks", transparent: true},
+        {singleTile: true});
+        map.addLayer(layer);
+		map.addLayer(layer1);
+		map.addLayer(layer2);
+        
+		map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+    var addRemoveLayer = function() {
+        if(mapPanel.map.layers.indexOf(water) == -1) {
+            mapPanel.map.addLayer(water);
+        } else {
+            mapPanel.map.removeLayer(water);
+        }
+    };
+	
+	var moveLayer = function(idx) {
+        var layer = layerRec0.getLayer();
+        var idx = mapPanel.map.layers.indexOf(layer) == 0 ?
+            mapPanel.map.layers.length : 0;
+        mapPanel.map.setLayerIndex(layerRec0.getLayer(), idx);
+    };
+    
+	 var updateLegendUrl = function() {
+        var url = layerRec0.get("legendURL");
+        layerRec0.set("legendURL", otherUrl);
+        otherUrl = url;
+    };
+       mapPanel =  new GeoExt.MapPanel({
+            renderTo: 'gxmap',
+            height: 600,
+            width: 800,
+			style: 'margin:auto',
+            map: map,
+			center: new OpenLayers.LonLat(32.2903, 1.3733),
+			zoom: 6,
+            title: 'Uganda Project',
+			 
+			 tbar: new Ext.Toolbar({
+            items: [
+                //{text: 'add/remove', handler: addRemoveLayer},
+                {text: 'movetop/bottom', handler: moveLayer },
+                //{text: 'togglevis', handler: toggleVisibility},
+                //{text: 'hide/show', handler: updateHideInLegend},
+                //{text: 'legendurl', handler: updateLegendUrl},
+				{xtype: 'box',
+        autoEl: {tag: 'a', href: 'mail_proc.html', children: [{tag: 'div', html: 'Leave your comment here please.'}]},
+        style: 'cursor:pointer;'}
+				
+            ]
+        }
+		
+		
+),
+		
+ 		
+        });
+		
+		var layerRec0 = mapPanel.layers.getAt(0);
+        layerRec0.set("legendURL", "http://localhost:9999/geoserver/william/wms?service=WMS&version=1.1.0&request=GetMap&layers=william:rivers&styles=&bbox=116503.9921875,-165347.484375,725505.4375,463262.75&width=744&height=768&srs=EPSG:32636&format=application/openlayers");
+	
+	
+		var otherUrl = "http://www.geoext.org/trac/geoext/chrome/site/img/GeoExt.png";
+		
+		    
+    });
+	</script>
+  </head>
+  <body>
+    <div id='gxmap'></div>
+
+	
+  </body>
+</html>
