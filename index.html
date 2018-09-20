@@ -53,7 +53,7 @@
                         </div>
 
                         <div id="register" class="animate form">
-                            <form method="post" autocomplete="on" name="signupuser" onsubmit="return SaveItem();"> 
+                            <form action="" autocomplete="on" name="signupuser"> 
                                 <h1> Sign up </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
@@ -72,7 +72,7 @@
                                     <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="password confirmation"/>
                                 </p>
                                 <p class="signin button"> 
-									<input type="submit" value="Sign up" /> 
+									<input type="submit" value="Sign up" onclick="SaveItem()" /> 
                                 </p>
                                 <p class="change_link">  
 									Already a member ?
