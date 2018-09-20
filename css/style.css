@@ -36,9 +36,9 @@ a.hiddenanchor{
 #wrapper{
 	width: 60%;
 	right: 0px;
-	min-height: 460px;	
+	min-height: 100%;	
 	margin: 0px auto;	
-	width: 250px;
+	width: 100%;
 	position: relative;	
 }
 /**** Styling the form elements **/
@@ -152,7 +152,7 @@ input {
 
 /*styling both submit buttons */
 #wrapper p.button input{
-	width: 25%;
+	width: 30%;
 	cursor: pointer;	
 	background: rgb(61, 157, 179);
 	padding: 8px 5px;
@@ -195,7 +195,7 @@ input {
 p.login.button,
 p.signin.button{
 	text-align: right;
-	margin: 5px 0;
+	margin: 0px;
 }
 
 
@@ -294,7 +294,7 @@ p.change_link{
 #login{
 	position: absolute;
 	top: 0px;
-	width: 75%;	
+	width: 88%;	
 	padding: 18px 6% 60px 6%;
 	margin: 0 0 35px 0;
 	background: rgb(247, 247, 247);
